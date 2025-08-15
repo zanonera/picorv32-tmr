@@ -165,7 +165,7 @@ module picorv32_tmr #(
 
     generate
       for (i = 0; i < 3; i = i+1) begin
-
+        (* dont_touch = "yes" *)
         picorv32 #(
           ENABLE_COUNTERS,
           ENABLE_COUNTERS64,
@@ -206,6 +206,13 @@ module picorv32_tmr #(
             .mem_wdata    (mem_wdata_tmr [i]  ),
             .mem_wstrb    (mem_wstrb_tmr [i]  ),
             .mem_rdata    (mem_rdata          ),
+
+            // Look-Ahead Interface
+            .mem_la_read   (mem_la_read_tmr  [i] ),
+            .mem_la_write  (mem_la_write_tmr [i] ),
+            .mem_la_addr   (mem_la_addr_tmr  [i] ),
+            .mem_la_wdata  (mem_la_wdata_tmr [i] ),
+            .mem_la_wstrb  (mem_la_wstrb_tmr [i] ),
             
             // Pico Co-Processor Interface (PCPI)
             .pcpi_valid   (pcpi_valid_tmr [i] ),
