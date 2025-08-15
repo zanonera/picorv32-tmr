@@ -1,8 +1,9 @@
 
-VIVADO_BASE = /opt/Xilinx/Vivado/2018.2
+VIVADO_BASE = /opt/Xilinx/Vivado/2018.3
 VIVADO = $(VIVADO_BASE)/bin/vivado
 XVLOG = $(VIVADO_BASE)/bin/xvlog
 XELAB = $(VIVADO_BASE)/bin/xelab
+XSIM = $(VIVADO_BASE)/bin/xsim
 GLBL = $(VIVADO_BASE)/data/verilog/src/glbl.v
 TOOLCHAIN_PREFIX = riscv32-unknown-elf-
 
@@ -38,7 +39,10 @@ synth_system: firmware.hex
 sim_system:
 	$(XVLOG) system_tb.v synth_system.v
 	$(XVLOG) $(GLBL)
-	$(XELAB) -L unifast_ver -L unisims_ver -R system_tb glbl
+	$(XELAB) -s simul --incr --debug all -L unifast_ver -L unisims_ver -R system_tb glbl
+
+sim_gui:
+	$(XSIM) simul -gui
 
 firmware.hex: firmware.S firmware.c firmware.lds
 	$(TOOLCHAIN_PREFIX)gcc -Os -ffreestanding -nostdlib -o firmware.elf firmware.S firmware.c \
