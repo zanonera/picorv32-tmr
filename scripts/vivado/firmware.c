@@ -1,3 +1,5 @@
+#define TMR_START_ADDR 0x40000000
+
 void putc(char c)
 {
 	*(volatile char*)0x10000000 = c;
@@ -19,7 +21,7 @@ void *memcpy(void *dest, const void *src, int n)
 
 void main()
 {
-	char message[] = "$Uryyb+Jbeyq!+Vs+lbh+pna+ernq+guvf+zrffntr+gura$gur+CvpbEI32+PCH"
+	char message[] = "$Uryyb+Jbeyq!+Vs+lbh+pna+ernq+guvf+zrffntr+gura$gur+CvpbEI32+jvgu+GZE+PCH"
 			"+frrzf+gb+or+jbexvat+whfg+svar.$$++++++++++++++++GRFG+CNFFRQ!$$";
 	for (int i = 0; message[i]; i++)
 		switch (message[i])
@@ -40,4 +42,8 @@ void main()
 			break;
 		}
 	puts(message);
+
+	puts("Tmr Status: ");
+	puts((char *)TMR_START_ADDR);
+	puts("\n");
 }
