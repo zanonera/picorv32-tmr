@@ -27,7 +27,11 @@ module system (
 	wire [31:0] mem_la_wdata;
 	wire [3:0] mem_la_wstrb;
 
-	picorv32 picorv32_core (
+	(*mark_debug = "true"*)
+	wire [ 2:0] tmr_errors [14];
+
+	//picorv32 picorv32_core (
+	picorv32_tmr picorv32_core (
 		.clk         (clk         ),
 		.resetn      (resetn      ),
 		.trap        (trap        ),
@@ -42,7 +46,9 @@ module system (
 		.mem_la_write(mem_la_write),
 		.mem_la_addr (mem_la_addr ),
 		.mem_la_wdata(mem_la_wdata),
-		.mem_la_wstrb(mem_la_wstrb)
+		.mem_la_wstrb(mem_la_wstrb),
+		.tmr_errors  (tmr_errors)
+
 	);
 
 	reg [31:0] memory [0:MEM_SIZE-1];
@@ -66,6 +72,18 @@ module system (
 			if (mem_la_write && mem_la_addr == 32'h1000_0000) begin
 				out_byte_en <= 1;
 				out_byte <= mem_la_wdata;
+			end
+			if (mem_la_read && mem_la_addr == 32'h4000_0000) begin
+				mem_rdata <= tmr_errors[0];
+			end
+			if (mem_la_read && mem_la_addr == 32'h4000_0004) begin
+				mem_rdata <= tmr_errors[1];
+			end
+			if (mem_la_read && mem_la_addr == 32'h4000_0008) begin
+				mem_rdata <= tmr_errors[2];
+			end
+			if (mem_la_read && mem_la_addr == 32'h4000_000B) begin
+				mem_rdata <= tmr_errors[3];
 			end
 		end
 	end else begin

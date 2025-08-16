@@ -1,6 +1,8 @@
 
-read_verilog system.v
+read_verilog -sv system.v
 read_verilog ../../picorv32.v
+read_verilog -sv ../../picorv32_tmr.v
+read_verilog -sv ../../word_voter.v
 read_xdc synth_system.xdc
 
 synth_design -part xc7a35t-cpg236-1 -top system
