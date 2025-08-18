@@ -83,7 +83,7 @@ module system (
 				mem_rdata <= tmr_errors[2];
 			end
 			if (mem_la_read && mem_la_addr == 32'h4000_000B) begin
-				mem_rdata <= tmr_errors[3];
+				mem_rdata <= tmr_errors[6];
 			end
 		end
 	end else begin

@@ -144,6 +144,7 @@ module picorv32_tmr #(
     wire        mem_la_read_tmr     [3];
     wire        mem_la_write_tmr    [3];
     wire [31:0] mem_la_addr_tmr     [3];
+    (*mark_debug = "true"*)
     wire [31:0] mem_la_wdata_tmr    [3];
     wire [ 3:0] mem_la_wstrb_tmr    [3];
 

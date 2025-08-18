@@ -11,6 +11,7 @@ module word_voter #(
     output [N-1:0] OUT,
     output [  2:0] ERROR
 );
+	(*mark_debug = "true"*)
     wire [N-1:0] A, B, C;
 
     wire match_A_B;
