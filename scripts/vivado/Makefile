@@ -1,5 +1,6 @@
 
-VIVADO_BASE = /opt/Xilinx/Vivado/2018.3
+VIVADO_PARENT := $(shell which vivado)
+VIVADO_BASE := $(shell dirname $(shell dirname $(VIVADO_PARENT)))
 VIVADO = $(VIVADO_BASE)/bin/vivado
 XVLOG = $(VIVADO_BASE)/bin/xvlog
 XELAB = $(VIVADO_BASE)/bin/xelab
@@ -37,6 +38,7 @@ synth_%:
 synth_system: firmware.hex
 
 sim_system:
+	@echo "Using Vivado from: $(VIVADO_BASE)"
 	$(XVLOG) system_tb.v synth_system.v
 	$(XVLOG) $(GLBL)
 	$(XELAB) -s simul --incr --debug all -L unifast_ver -L unisims_ver -R system_tb glbl
