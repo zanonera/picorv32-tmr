@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="simul.wdb" id="1">
+         <top_modules>
+            <top_module name="glbl" />
+            <top_module name="system_tb" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="92189912974fs"></ZoomStartTime>
+      <ZoomEndTime time="96412258931fs"></ZoomEndTime>
+      <Cursor1Time time="93870100000fs"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="233"></NameColumnWidth>
+      <ValueColumnWidth column_width="134"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="15" />
+   <wvobject fp_name="divider61" type="divider">
+      <obj_property name="label">MEM_WDATA_VOTER</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/system_tb/uut/picorv32_core/voter_mem_la_wdata/C">
+      <obj_property name="ElementShortName">C[31:0]</obj_property>
+      <obj_property name="ObjectShortName">C[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/system_tb/uut/picorv32_core/voter_mem_la_wdata/A">
+      <obj_property name="ElementShortName">A[31:0]</obj_property>
+      <obj_property name="ObjectShortName">A[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/system_tb/uut/picorv32_core/voter_mem_la_wdata/B">
+      <obj_property name="ElementShortName">B[31:0]</obj_property>
+      <obj_property name="ObjectShortName">B[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/system_tb/uut/picorv32_core/voter_mem_la_wdata/ERROR">
+      <obj_property name="ElementShortName">ERROR[2:0]</obj_property>
+      <obj_property name="ObjectShortName">ERROR[2:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/system_tb/uut/picorv32_core/voter_mem_la_wdata/OUT">
+      <obj_property name="ElementShortName">OUT[31:0]</obj_property>
+      <obj_property name="ObjectShortName">OUT[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="divider62" type="divider">
+      <obj_property name="label">MEM_WDATA_CORE1</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/system_tb/uut/picorv32_core/\genblk1[0].core_u0 /mem_la_wdata">
+      <obj_property name="ElementShortName">mem_la_wdata[31:0]</obj_property>
+      <obj_property name="ObjectShortName">mem_la_wdata[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="divider64" type="divider">
+      <obj_property name="label">MEM_WDATA_CORE2</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/system_tb/uut/picorv32_core/\genblk1[1].core_u0 /mem_la_wdata">
+      <obj_property name="ElementShortName">mem_la_wdata[31:0]</obj_property>
+      <obj_property name="ObjectShortName">mem_la_wdata[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="divider66" type="divider">
+      <obj_property name="label">MEM_WDATA_CORE3</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/system_tb/uut/picorv32_core/\genblk1[2].core_u0 /mem_la_wdata">
+      <obj_property name="ElementShortName">mem_la_wdata[31:0]</obj_property>
+      <obj_property name="ObjectShortName">mem_la_wdata[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="divider68" type="divider">
+      <obj_property name="label">Output Serial</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/system_tb/out_byte">
+      <obj_property name="ElementShortName">out_byte[7:0]</obj_property>
+      <obj_property name="ObjectShortName">out_byte[7:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/system_tb/out_byte">
+      <obj_property name="ElementShortName">out_byte[7:0]</obj_property>
+      <obj_property name="ObjectShortName">out_byte[7:0]</obj_property>
+      <obj_property name="Radix">ASCIIRADIX</obj_property>
+   </wvobject>
+</wave_config>
