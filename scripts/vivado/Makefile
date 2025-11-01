@@ -44,7 +44,7 @@ sim_system:
 	$(XELAB) -s simul --incr --debug all -L unifast_ver -L unisims_ver -R system_tb glbl
 
 sim_gui:
-	$(XSIM) simul -gui
+	$(XSIM) simul -view simul.wcfg -gui
 
 firmware.hex: firmware.S firmware.c firmware.lds
 	$(TOOLCHAIN_PREFIX)gcc -Os -ffreestanding -nostdlib -o firmware.elf firmware.S firmware.c \
