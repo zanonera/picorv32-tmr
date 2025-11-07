@@ -1,5 +1,8 @@
 `timescale 1 ns / 1 ps
 
+// uncomment this to allow fault injection with mutants
+//`define TMR_INJECT_ERR
+
 module system (
 	input            clk,
 	input            resetn,
@@ -29,6 +32,7 @@ module system (
 
 	(*mark_debug = "true"*)
 	wire [ 2:0] tmr_errors [14];
+	wire [ 2:0] tmr_inject [14];
 
 	//picorv32 picorv32_core (
 	picorv32_tmr picorv32_core (
@@ -47,6 +51,9 @@ module system (
 		.mem_la_addr (mem_la_addr ),
 		.mem_la_wdata(mem_la_wdata),
 		.mem_la_wstrb(mem_la_wstrb),
+    `ifdef TMR_INJECT_ERR
+        .tmr_inject  (tmr_inject),
+    `endif
 		.tmr_errors  (tmr_errors)
 
 	);
@@ -56,6 +63,22 @@ module system (
 
 	reg [31:0] m_read_data;
 	reg m_read_en;
+
+    // Simulate Faults with Mutants signals
+    assign tmr_inject[0]  = 0;    //trap
+    assign tmr_inject[1]  = 0;    //mem_valid & mem_instr & mem_wstrb
+    assign tmr_inject[2]  = 0;    //mem_addr
+    assign tmr_inject[3]  = 0;    //mem_wdata
+    assign tmr_inject[4]  = 0;    //mem_la_read & mem_la_write & mem_la_wstrb
+    assign tmr_inject[5]  = 0;    //mem_la_addr
+    assign tmr_inject[6]  = 0;    //mem_la_wdata
+    assign tmr_inject[7]  = 0;    //pcpi_valid
+    assign tmr_inject[8]  = 0;    //pcpi_insn
+    assign tmr_inject[9]  = 0;    //pcpi_rs1
+    assign tmr_inject[10] = 0;    //pcpi_rs2
+    assign tmr_inject[11] = 0;    //eoi
+    assign tmr_inject[12] = 0;    //trace_valid
+    assign tmr_inject[13] = 0;    //trace_data
 
 	generate if (FAST_MEMORY) begin
 		always @(posedge clk) begin
