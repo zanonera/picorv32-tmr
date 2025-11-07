@@ -60,11 +60,12 @@ void main()
 		}
 	puts(message);
 
-if((char *)(TMR_START_ADDR + 4*14) == 0x4D335652){
-	puts("BOOT CORRECT");
+	puts((char *)(TMR_START_ADDR + 4*14));
 	puts("\n");
 	puts("\n");
-}
+
+	puts("PicoRV32 Buses Status:");
+	puts("\n");
 
 for (unsigned int i = 0; i <= 13; i++) {
 	    puts(signal_names[i]);
