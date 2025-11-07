@@ -1,4 +1,4 @@
-#define TMR_START_ADDR 0x40000000
+#define TMR_START_ADDR 0x40000010
 
 void putc(char c)
 {
@@ -43,7 +43,9 @@ void main()
 		}
 	puts(message);
 
-	puts("Tmr Status: ");
-	puts((char *)TMR_START_ADDR);
-	puts("\n");
+for (unsigned int i = 0; i <= 14; i++) {
+		puts("Tmr Status: ");
+		putc('0' + *(char *)(TMR_START_ADDR + 4*i));
+		puts("\n");
+	}
 }

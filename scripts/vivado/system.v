@@ -61,7 +61,22 @@ module system (
 		always @(posedge clk) begin
 			mem_ready <= 1;
 			out_byte_en <= 0;
-			mem_rdata <= memory[mem_la_addr >> 2];
+			mem_rdata <=    (mem_la_read && mem_la_addr == 32'h4000_0010) ? tmr_errors[0] :
+			                (mem_la_read && mem_la_addr == 32'h4000_0014) ? tmr_errors[1] :
+							(mem_la_read && mem_la_addr == 32'h4000_0018) ? tmr_errors[2] :
+							(mem_la_read && mem_la_addr == 32'h4000_001C) ? tmr_errors[3] :
+							(mem_la_read && mem_la_addr == 32'h4000_0020) ? tmr_errors[4] :
+							(mem_la_read && mem_la_addr == 32'h4000_0024) ? tmr_errors[5] :
+							(mem_la_read && mem_la_addr == 32'h4000_0028) ? tmr_errors[6] :
+							(mem_la_read && mem_la_addr == 32'h4000_002C) ? tmr_errors[7] :
+							(mem_la_read && mem_la_addr == 32'h4000_0030) ? tmr_errors[8] :
+							(mem_la_read && mem_la_addr == 32'h4000_0034) ? tmr_errors[9] :
+							(mem_la_read && mem_la_addr == 32'h4000_0038) ? tmr_errors[10] :
+							(mem_la_read && mem_la_addr == 32'h4000_003C) ? tmr_errors[11] :
+							(mem_la_read && mem_la_addr == 32'h4000_0040) ? tmr_errors[12] :
+							(mem_la_read && mem_la_addr == 32'h4000_0044) ? tmr_errors[13] :
+							(mem_la_read && mem_la_addr == 32'h4000_0048) ? 8 :
+							memory[mem_la_addr >> 2];
 			if (mem_la_write && (mem_la_addr >> 2) < MEM_SIZE) begin
 				if (mem_la_wstrb[0]) memory[mem_la_addr >> 2][ 7: 0] <= mem_la_wdata[ 7: 0];
 				if (mem_la_wstrb[1]) memory[mem_la_addr >> 2][15: 8] <= mem_la_wdata[15: 8];
@@ -72,18 +87,6 @@ module system (
 			if (mem_la_write && mem_la_addr == 32'h1000_0000) begin
 				out_byte_en <= 1;
 				out_byte <= mem_la_wdata;
-			end
-			if (mem_la_read && mem_la_addr == 32'h4000_0000) begin
-				mem_rdata <= tmr_errors[0];
-			end
-			if (mem_la_read && mem_la_addr == 32'h4000_0004) begin
-				mem_rdata <= tmr_errors[1];
-			end
-			if (mem_la_read && mem_la_addr == 32'h4000_0008) begin
-				mem_rdata <= tmr_errors[2];
-			end
-			if (mem_la_read && mem_la_addr == 32'h4000_000B) begin
-				mem_rdata <= tmr_errors[6];
 			end
 		end
 	end else begin
