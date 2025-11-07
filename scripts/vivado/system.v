@@ -98,7 +98,7 @@ module system (
 							(mem_la_read && mem_la_addr == 32'h4000_003C) ? tmr_errors[11] :
 							(mem_la_read && mem_la_addr == 32'h4000_0040) ? tmr_errors[12] :
 							(mem_la_read && mem_la_addr == 32'h4000_0044) ? tmr_errors[13] :
-							(mem_la_read && mem_la_addr == 32'h4000_0048) ? 8 :
+							(mem_la_read && mem_la_addr == 32'h4000_0048) ? 32'h5256334D :
 							memory[mem_la_addr >> 2];
 			if (mem_la_write && (mem_la_addr >> 2) < MEM_SIZE) begin
 				if (mem_la_wstrb[0]) memory[mem_la_addr >> 2][ 7: 0] <= mem_la_wdata[ 7: 0];

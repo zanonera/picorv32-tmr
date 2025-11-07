@@ -1,5 +1,22 @@
 #define TMR_START_ADDR 0x40000010
 
+const char *signal_names[] = {
+    "trap",
+    "mem_valid & mem_instr & mem_wstrb",
+    "mem_addr",
+    "mem_wdata",
+    "mem_la_read & mem_la_write & mem_la_wstrb",
+    "mem_la_addr",
+    "mem_la_wdata",
+    "pcpi_valid",
+    "pcpi_insn",
+    "pcpi_rs1",
+    "pcpi_rs2",
+    "eoi",
+    "trace_valid",
+    "trace_data"
+};
+
 void putc(char c)
 {
 	*(volatile char*)0x10000000 = c;
@@ -43,9 +60,16 @@ void main()
 		}
 	puts(message);
 
-for (unsigned int i = 0; i <= 14; i++) {
-		puts("Tmr Status: ");
-		putc('0' + *(char *)(TMR_START_ADDR + 4*i));
+if((char *)(TMR_START_ADDR + 4*14) == 0x4D335652){
+	puts("BOOT CORRECT");
+	puts("\n");
+	puts("\n");
+}
+
+for (unsigned int i = 0; i <= 13; i++) {
+	    puts(signal_names[i]);
+		puts(": ");
+		putc('0' + (0x07 & *(char *)(TMR_START_ADDR + 4*i)));
 		puts("\n");
 	}
 }
