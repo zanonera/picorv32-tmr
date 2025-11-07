@@ -27,6 +27,9 @@ help:
 	@echo "  make table.txt"
 	@echo "  make area"
 	@echo ""
+	@echo "Only a fast Simulation:"
+	@echo "  make sim"
+	@echo ""
 
 synth_%:
 	rm -f $@.log
@@ -45,7 +48,7 @@ sim_system:
 
 sim: firmware.hex
 	@echo "Using Vivado from: $(VIVADO_BASE)"
-	$(XVLOG) -sv system_tb.v system.v ../../picorv32_tmr.v ../../word_voter.v
+	$(XVLOG) -sv system_tb.v system.v ../../picorv32_tmr.v ../../picorv32.v ../../word_voter.v
 	$(XVLOG) $(GLBL)
 	$(XELAB) -s simul_sim --incr --debug all -L unifast_ver -L unisims_ver -R system_tb glbl
 
