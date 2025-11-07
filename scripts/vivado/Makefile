@@ -80,5 +80,5 @@ table.txt:
 clean:
 	rm -rf .Xil/ firmware.bin firmware.elf firmware.hex firmware.map synth_*.log
 	rm -rf synth_*.mmi synth_*.bit synth_system.v table.txt tab_*/ webtalk.jou
-	rm -rf webtalk.log webtalk_*.jou webtalk_*.log xelab.* xsim[._]* xvlog.*
+	rm -rf webtalk.log webtalk_*.jou webtalk_*.log xelab.* xsim[._]* xvlog.* vivado*.str simul*.wdb
 
