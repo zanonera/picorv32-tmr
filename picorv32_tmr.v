@@ -28,6 +28,7 @@
 // `define DEBUGREGS
 // `define DEBUGASM
 // `define DEBUG
+// `define TMR_INJECT_ERR
 
 `ifdef DEBUG
   `define debug(debug_command) debug_command
@@ -264,6 +265,22 @@ module picorv32_tmr #(
 `endif 
 
 `ifdef TMR_INJECT_ERR
+
+    assign tmr_inject[0]  = 0;    //trap
+    assign tmr_inject[1]  = 0;    //mem_valid & mem_instr & mem_wstrb
+    assign tmr_inject[2]  = 0;    //mem_addr
+    assign tmr_inject[3]  = 0;    //mem_wdata
+    assign tmr_inject[4]  = 0;    //mem_la_read & mem_la_write & mem_la_wstrb
+    assign tmr_inject[5]  = 0;    //mem_la_addr
+    assign tmr_inject[6]  = 0;    //mem_la_wdata
+    assign tmr_inject[7]  = 0;    //pcpi_valid
+    assign tmr_inject[8]  = 0;    //pcpi_insn
+    assign tmr_inject[9]  = 0;    //pcpi_rs1
+    assign tmr_inject[10] = 0;    //pcpi_rs2
+    assign tmr_inject[11] = 0;    //eoi
+    assign tmr_inject[12] = 0;    //trace_valid
+    assign tmr_inject[13] = 0;    //trace_data
+
     word_voter #(1)  voter_trap (trap_tmr, tmr_inject [0], trap, tmr_errors [0]);
 
     word_voter #(6)  voter_mem_signals (mem_signals, tmr_inject [1], {mem_valid, mem_instr, mem_wstrb}, tmr_errors [1]);
