@@ -41,7 +41,13 @@ sim_system:
 	@echo "Using Vivado from: $(VIVADO_BASE)"
 	$(XVLOG) system_tb.v synth_system.v
 	$(XVLOG) $(GLBL)
-	$(XELAB) -s simul --incr --debug all -L unifast_ver -L unisims_ver -R system_tb glbl
+	$(XELAB) -s simul_synth --incr --debug all -L unifast_ver -L unisims_ver -R system_tb glbl
+
+sim: firmware.hex
+	@echo "Using Vivado from: $(VIVADO_BASE)"
+	$(XVLOG) -sv system_tb.v system.v ../../picorv32_tmr.v ../../word_voter.v
+	$(XVLOG) $(GLBL)
+	$(XELAB) -s simul_sim --incr --debug all -L unifast_ver -L unisims_ver -R system_tb glbl
 
 sim_gui:
 	$(XSIM) simul -view simul.wcfg -gui
