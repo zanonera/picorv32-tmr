@@ -80,6 +80,7 @@ while (1) {
     puts("*************** PicoRV32 Buses Status ***************\n\r");
 
     putc('I');
+	putc('I');
     for (unsigned int i = 1; i <= 13; i++) {
         //puts(signal_names[i]);
         //puts(": ");
