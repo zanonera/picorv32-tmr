@@ -1,4 +1,5 @@
 #define TMR_START_ADDR 0x40000010
+#define STATUS_IN_LOOP 1
 
 const char *signal_names[] = {
     "trap",
@@ -73,4 +74,26 @@ for (unsigned int i = 0; i <= 13; i++) {
 		putc('0' + (0x07 & *(char *)(TMR_START_ADDR + 4*i)));
 		puts("\n");
 	}
+
+#if STATUS_IN_LOOP == 1
+while (1) {
+    puts("*************** PicoRV32 Buses Status ***************\n\r");
+
+    putc('I');
+    for (unsigned int i = 1; i <= 13; i++) {
+        //puts(signal_names[i]);
+        //puts(": ");
+
+        unsigned char value = *(volatile unsigned char *)(TMR_START_ADDR + 4*i);
+        value &= 0x07; // keep only lower 3 bits
+
+        putc('0' + value);
+        //putc('\n\r');
+    }
+	putc('F');
+    puts("\n\r");
+    // delay to avoid UART flooding
+    for (volatile unsigned long d = 0; d < 1000000; d++);
+}
+#endif
 }
